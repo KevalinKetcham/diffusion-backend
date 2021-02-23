@@ -22,4 +22,3 @@ app.use('/upload', upload);
 app.listen(PORT, () => {
   console.log(`Lstening at http://localhost:${PORT}`)
 })
-
