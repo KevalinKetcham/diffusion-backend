@@ -19,11 +19,16 @@ const upload = require('./Upload');
 app.use('/auth', auth);
 app.use('/upload', upload);
 
+console.log(process.env.PORT);
+console.log(process.env.DB);
+console.log(process.env.ENCRYPTION_KEY);
+console.log(process.env.S3_BUCKET);
+
 app.listen(PORT, () => {
-  console.log(`Lstening at http://localhost:${PORT}`)
+  console.log(`Lstening at PORT:${PORT}`)
 })
 
 // delete below:
 app.get('/', async(req, res) => {
-  res.send('Home route of the best book platform: diffusionapp.com ofc!');
+  res.send('Welcome to the diffusion backend server!');
 })
