@@ -29,6 +29,6 @@ app.listen(PORT, () => {
 })
 
 // delete below:
-app.get('/', async(req, res) => {
-  res.send('Welcome to the diffusion backend server!');
+app.use('/', (req, res) => {
+  res.send(req.body);
 })
