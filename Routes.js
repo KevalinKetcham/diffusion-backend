@@ -22,3 +22,8 @@ app.use('/upload', upload);
 app.listen(PORT, () => {
   console.log(`Lstening at http://localhost:${PORT}`)
 })
+
+// delete below:
+app.get('/', async(req, res) => {
+  res.send('Home route of the best book platform: diffusionapp.com ofc!');
+})
