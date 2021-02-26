@@ -42,6 +42,7 @@ router.post('/signin',
 
         await UserModel.findOne({ email: req.body.email }, async (err, docs) => {
             if(docs === null) {
+                console.log('No user with this email found!');
                 res.json({ err: 'No user with this email found!', auth: false })
             } else {
                 let userPassword = docs.password;
@@ -52,6 +53,7 @@ router.post('/signin',
                     res.json({ session: cipherData, auth: true })
                     console.log(req.body.email + ' signed in!')
                 } else {
+                    console.log('User has incorrect password!')
                     res.json({ err: 'Incorrect password!', auth: false })
                 }
             }
