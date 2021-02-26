@@ -9,7 +9,7 @@ const cookieParser = require('cookie-parser');
 app.use(cookieParser())
 
 const cors = require('cors')
-app.use(cors())
+app.use(cors({ origin: true }))
 
 require('dotenv').config();
 const PORT = process.env.PORT;
@@ -19,11 +19,6 @@ const upload = require('./Upload');
 app.use('/auth', auth);
 app.use('/upload', upload);
 
-console.log(process.env.PORT);
-console.log(process.env.DB);
-console.log(process.env.ENCRYPTION_KEY);
-console.log(process.env.S3_BUCKET);
-
 app.listen(PORT, () => {
-  console.log(`Lstening at PORT:${PORT}`)
+  console.log(`Listening at PORT:${PORT}`)
 })
