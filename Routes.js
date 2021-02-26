@@ -27,8 +27,3 @@ console.log(process.env.S3_BUCKET);
 app.listen(PORT, () => {
   console.log(`Lstening at PORT:${PORT}`)
 })
-
-// delete below:
-app.use('/', (req, res) => {
-  res.send(req.body);
-})
