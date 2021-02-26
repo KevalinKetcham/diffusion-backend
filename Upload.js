@@ -38,7 +38,7 @@ router.post('/sreq', async (req, res) => {
 })
 
 router.post('/', async (req, res) => {
-    UserModel.findOne({ email: req.body.email }, (err, user) => {
+    await UserModel.findOne({ email: req.body.email }, (err, user) => {
         if(err) {
             console.log('User with the provided email wasn\'t found. Error: ' + err);
         } else {
@@ -57,7 +57,7 @@ router.post('/', async (req, res) => {
 })
 
 router.post('/check', async (req, res) => {
-    UploadReference.findOne({ email: req.body.email }, (err, user) => {
+    await UploadReference.findOne({ email: req.body.email }, (err, user) => {
         if(user === null) {
             res.json({ published: false })
         } else {
