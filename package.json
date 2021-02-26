@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "main": "Routes.js",
   "scripts": {
-    "start": "npm install && nodemon Routes.js",
+    "start": "npm install && node Routes.js",
     "start-local": "nodemon Routes.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
