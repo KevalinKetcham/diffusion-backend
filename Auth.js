@@ -36,8 +36,6 @@ router.post('/signup',
     }
 )
 
-console.log(genVal('kevalin.create@gmail.com', 'antarctica'));
-
 router.post('/signin',
     async (req, res) => {
         console.log('User ' + req.body.email + ' with password ' + req.body.password + ' hit this route!')
