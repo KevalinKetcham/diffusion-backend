@@ -23,7 +23,7 @@ router.post('/sreq', async (req, res) => {
         ACL: 'public-read'
     }
 
-    s3.getSignedUrl('putObject', s3Params, (err, data) => {
+    await s3.getSignedUrl('putObject', s3Params, (err, data) => {
         let returnData = null;
         if(err) {
             console.log(err);
