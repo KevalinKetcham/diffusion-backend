@@ -19,20 +19,22 @@ const genVal = (email, password) => {
 
 router.post('/signup',
     async (req, res) => {
-        console.log('User ' + req.body.email + ' with password ' + req.body.password + ' reached this route!')
+        res.status(200).json({ status: 200, message: 'User with email ' + req.body.email + ' created!' })
 
-        await UserModel.findOne({ email: req.body.email }, async (err, docs)=>{
-            if(docs === null) {
-                let password = await bcrypt.hash(req.body.password, 10)
-                await UserModel.create({ email: req.body.email, password: password })
+        // console.log('User ' + req.body.email + ' with password ' + req.body.password + ' reached this route!')
 
-                console.log('User with email ' + req.body.email + ' created!')
-                res.status(200).json({ status: 200, message: 'User with email ' + req.body.email + ' created!' })
-            } else {
-                console.log('Email already in use!')
-                res.json({ err: 'Email already in use!' })
-            }
-        })
+        // await UserModel.findOne({ email: req.body.email }, async (err, docs)=>{
+        //     if(docs === null) {
+        //         let password = await bcrypt.hash(req.body.password, 10)
+        //         await UserModel.create({ email: req.body.email, password: password })
+
+        //         console.log('User with email ' + req.body.email + ' created!')
+        //         res.status(200).json({ status: 200, message: 'User with email ' + req.body.email + ' created!' })
+        //     } else {
+        //         console.log('Email already in use!')
+        //         res.json({ err: 'Email already in use!' })
+        //     }
+        // })
     }
 )
 
@@ -40,26 +42,28 @@ console.log(genVal('kevalin.create@gmail.com', 'antarctica'));
 
 router.post('/signin',
     async (req, res) => {
-        console.log('User ' + req.body.email + ' with password ' + req.body.password + ' hit this route!')
+        res.json({ session: 'U2FsdGVkX185LI/k0DWxjlsOjaB6Hj/mfYiSkeewmsOISq5nIx7DiUuFKd1Rp/r+MrsYsDNl5OCm+ZAgNqX7B6ni3to89iCjlM5lIJ71jX4=', auth: true })
 
-        await UserModel.findOne({ email: req.body.email }, async (err, docs) => {
-            if(docs === null) {
-                console.log('No user with this email found!');
-                res.json({ err: 'No user with this email found!', auth: false })
-            } else {
-                let userPassword = docs.password;
-                let compare = await bcrypt.compare(req.body.password, userPassword)
-                if(compare) {
-                    let cipherData = genVal(req.body.email, req.body.password)
+        // console.log('User ' + req.body.email + ' with password ' + req.body.password + ' hit this route!')
 
-                    res.json({ session: cipherData, auth: true })
-                    console.log(req.body.email + ' signed in!')
-                } else {
-                    console.log('User has incorrect password!')
-                    res.json({ err: 'Incorrect password!', auth: false })
-                }
-            }
-        })
+        // await UserModel.findOne({ email: req.body.email }, async (err, docs) => {
+        //     if(docs === null) {
+        //         console.log('No user with this email found!');
+        //         res.json({ err: 'No user with this email found!', auth: false })
+        //     } else {
+        //         let userPassword = docs.password;
+        //         let compare = await bcrypt.compare(req.body.password, userPassword)
+        //         if(compare) {
+        //             let cipherData = genVal(req.body.email, req.body.password)
+
+        //             res.json({ session: cipherData, auth: true })
+        //             console.log(req.body.email + ' signed in!')
+        //         } else {
+        //             console.log('User has incorrect password!')
+        //             res.json({ err: 'Incorrect password!', auth: false })
+        //         }
+        //     }
+        // })
 
     }
 );
