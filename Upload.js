@@ -41,6 +41,7 @@ router.post('/', async (req, res) => {
     await UserModel.findOne({ email: req.body.email }, (err, user) => {
         if(err) {
             console.log('User with the provided email wasn\'t found. Error: ' + err);
+            res.json({ err: "An error has occured!" });
         } else {
             UploadReference.create({
                 title: req.body.title,
@@ -50,10 +51,9 @@ router.post('/', async (req, res) => {
                 email: req.body.email,
                 s3File: req.body.s3File
             })
+            res.json({ message: "Data registered", status: 200 });
         }
     })
-
-    res.json({ req: req.body })
 })
 
 router.post('/check', async (req, res) => {
